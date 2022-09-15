@@ -1,0 +1,33 @@
+<ion-content>
+  
+  <div class="header">
+    <h2>{{ name }}</h2>
+  </div>
+  <div class="space-between">
+    <div class="followings">
+      <ion-badge color="primary" mode="ios">42</ion-badge>
+      <p>A manger</p>
+    </div>
+    <div class="followings">
+      <ion-badge color="primary" mode="ios">42</ion-badge>
+      <p>Aliments</p>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="border-blue">
+      <div class="border-white">
+        <div class="img-box">
+          <img width="100%" src="{{ photo }}">
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-card>
+    <ul>
+      <li>Mail : {{ mail }}</li>
+      <li>Méthode : {{ method }}</li>
+    </ul>
+  </ion-card>
+
+  <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
+</ion-content>
