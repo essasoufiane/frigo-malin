@@ -9,9 +9,9 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item *ngFor="let foodItem of allFoodToEatSoon">
-      <ion-label *ngIf="userIdCo === foodItem.userId">
-        <h2 *ngIf="userIdCo === foodItem.userId">{{ foodItem.foodName }}</h2>
-        <p *ngIf="userIdCo === foodItem.userId">A manger avant le {{ foodItem.betterToEatBefore | date}}</p>
+      <ion-label>
+        <h2>{{ foodItem.foodName }}</h2>
+        <p>A manger avant le {{ foodItem.betterToEatBefore | date}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

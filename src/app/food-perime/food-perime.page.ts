@@ -14,24 +14,23 @@ export class FoodPerimePage implements OnInit, OnDestroy {
   allFoodToEatSoon: Food[];
   sub: Subscription;
   nbOfDaysAgo = 15;//nmbr de jours restant avant de le mettre dans la liste
-  userIdCo: string;
+  public userIdCo: string;
 
   constructor(private foodService: FoodService, public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    this.getFoodToEatBeforeDaysAgo();
+
+  }
+  getFoodToEatBeforeDaysAgo() {
     this.afAuth.authState.subscribe(auth => {
       if (!auth) {
         // console.log('non connecté');
       } else {
         return this.userIdCo = auth.uid;
-        // console.log('connecté: ' + this.userId);
       };
+      console.log('connecté: ' + this.userIdCo);
     });
-  }
-
-  getFoodToEatBeforeDaysAgo() {
-    this.sub = this.foodService.getFoodToEatBeforeDaysAgo(this.nbOfDaysAgo).subscribe(data => {
+    this.sub = this.foodService.getFoodToEatBeforeDaysAgo(this.nbOfDaysAgo,this.userIdCo).subscribe(data => {
       this.allFoodToEatSoon = data.map(foodItem => {
         return {
           betterToEatBefore: (foodItem.betterToEatBefore as any).toDate(),
@@ -44,12 +43,18 @@ export class FoodPerimePage implements OnInit, OnDestroy {
     });
   }
 
+
   ionViewWillEnter() { //ionViewWillEnter s'execute a chaque fois qu'on vas dans la page contrairement a ngOnInit qui s'execute qu'a la création de la page
     this.getFoodToEatBeforeDaysAgo();
   }
+
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
 }
+function getFoodToEatBeforeDaysAgo() {
+  throw new Error('Function not implemented.');
+}
+

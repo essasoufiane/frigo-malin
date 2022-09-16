@@ -35,10 +35,10 @@ export class FoodService {
     return new Date(finaleDate);
   }
 
-  getFoodToEatBeforeDaysAgo(nbOfDays: number): Observable<Food[]> {
+  getFoodToEatBeforeDaysAgo(nbOfDays: number, userId: string): Observable<Food[]> {
     const daysInMilliseconds = nbOfDays * 24 * 3600 * 100;
     const dateInFuture = new Date(Date.now() + daysInMilliseconds);
-    return this.afs.collection('freezer', ref => ref.where('betterToEatBefore', '<', dateInFuture)).valueChanges() as Observable<Food[]>;
+    return this.afs.collection('freezer', ref => ref.where('betterToEatBefore', '<', dateInFuture).where('userId', '==' ,userId)).valueChanges() as Observable<Food[]>;
   }
 
   updateFood(food: Food): Observable<any> {

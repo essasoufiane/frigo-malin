@@ -1,5 +1,5 @@
 <ion-content>
-  
+
   <div class="header">
     <h2>{{ name }}</h2>
   </div>
@@ -28,6 +28,6 @@
       <li>Méthode : {{ method }}</li>
     </ul>
   </ion-card>
+  <ion-button id="deco"  color="danger" type="submit" (click)="authService.SignOut()" expand="block">Déconnexion</ion-button>
 
-  <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
 </ion-content>
